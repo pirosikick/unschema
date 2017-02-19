@@ -30,7 +30,6 @@
   "keywords": ["JSON Schema"],
   "license": "MIT",
   "main": "lib/index.js",
-  "private": true,
   "repositry": {
     "type": "git",
     "url": "https://github.com/pirosikick/unschema.git"
