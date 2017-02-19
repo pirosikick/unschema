@@ -1,0 +1,48 @@
+{
+  "$schema": "",
+  "title": "user",
+  "type": "object",
+  "definitions": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 18
+    },
+    "sex": {
+      "enum": ["male", "female"]
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    },
+    "twitter": {
+      "type": "string",
+      "format": "url",
+      "example": "https://twitter.com/pirosikick"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "properties": {
+    "id": { "$ref": "#/definitions/id" },
+    "name": { "$ref": "#/definitions/name" },
+    "age": { "$ref": "#/definitions/age" },
+    "sex": { "$ref": "#/definitions/sex" },
+    "email": { "$ref": "#/definitions/email" },
+    "homepage": { "$ref": "#/definitions/homepage" },
+    "twitter": { "$ref": "#/definitions/twitter" },
+    "created_at": { "$ref": "#/definitions/created_at" }
+  }
+}

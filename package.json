@@ -1,0 +1,70 @@
+{
+  "name": "unschema",
+  "description": "Generates example JSON from JSON Schema",
+  "version": "0.0.1",
+  "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
+  "bug": "https://github.com/pirosikick/unschema/issues",
+  "devDependencies": {
+    "ava": "^0.18.1",
+    "babel-cli": "^6.23.0",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-register": "^6.23.0",
+    "codecov": "^1.0.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-flowtype": "^2.30.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.0.1",
+    "flow-bin": "^0.39.0",
+    "lint-staged": "^3.3.0",
+    "npm-run-all": "^4.0.1",
+    "nyc": "^10.1.2",
+    "pre-commit": "^1.2.2"
+  },
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "homepage": "https://github.com/pirosikick/unschema",
+  "keywords": ["JSON Schema"],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "private": true,
+  "repositry": {
+    "type": "git",
+    "url": "https://github.com/pirosikick/unschema.git"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "nyc ava",
+    "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "lint": "eslint src test",
+    "flow": "flow",
+    "lint-staged": "lint-staged",
+    "prepublish": "run-s lint flow test build"
+  },
+  "ava": {
+    "source": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "pre-commit": [
+    "lint-staged",
+    "flow"
+  ],
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "lodash.result": "^4.5.2",
+    "verror": "^1.9.0"
+  }
+}
