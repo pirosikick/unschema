@@ -1,7 +1,7 @@
 {
   "name": "unschema",
   "description": "Generates example JSON from JSON Schema",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
   "bug": "https://github.com/pirosikick/unschema/issues",
   "devDependencies": {
@@ -27,7 +27,9 @@
     "package.json"
   ],
   "homepage": "https://github.com/pirosikick/unschema",
-  "keywords": ["JSON Schema"],
+  "keywords": [
+    "JSON Schema"
+  ],
   "license": "MIT",
   "main": "lib/index.js",
   "repositry": {
