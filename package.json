@@ -1,7 +1,7 @@
 {
   "name": "unschema",
   "description": "Generates example JSON from JSON Schema",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Hiroyuki ANAI <pirosikick@gmail.com>",
   "bug": "https://github.com/pirosikick/unschema/issues",
   "devDependencies": {
