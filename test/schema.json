@@ -10,6 +10,9 @@
     "name": {
       "type": "string"
     },
+    "is_admin": {
+      "type": "boolean"
+    },
     "age": {
       "type": "integer",
       "minimum": 18
@@ -33,16 +36,24 @@
     "created_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "friends": {
+      "type": ["array"],
+      "items": [{
+        "$ref": "#/definitions/id"
+      }]
     }
   },
   "properties": {
     "id": { "$ref": "#/definitions/id" },
     "name": { "$ref": "#/definitions/name" },
+    "is_admin": { "$ref": "#/definitions/is_admin" },
     "age": { "$ref": "#/definitions/age" },
     "sex": { "$ref": "#/definitions/sex" },
     "email": { "$ref": "#/definitions/email" },
     "homepage": { "$ref": "#/definitions/homepage" },
     "twitter": { "$ref": "#/definitions/twitter" },
-    "created_at": { "$ref": "#/definitions/created_at" }
+    "created_at": { "$ref": "#/definitions/created_at" },
+    "friends": { "$ref": "#/definitions/friends" }
   }
 }

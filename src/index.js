@@ -30,6 +30,11 @@ type Schema = {
   items: ?ArrayItems;
   minimum: ?number;
   maximum: ?number;
+  multipleOf: ?number;
+  exclusiveMinimum: ?boolean;
+  exclusiveMaximum: ?boolean;
+  minLength: ?number;
+  maxLength: ?number;
   $ref: ?string;
   example: ?any;
   format: ?StringFormat;
@@ -51,6 +56,41 @@ function resolvePointer(schema: Schema, rootSchema: Schema): Schema {
     }
   }
   return schema;
+}
+
+function toNumber(schema: Schema): number {
+  const { minimum, exclusiveMinimum, maximum, exclusiveMaximum } = schema;
+  const multipleOf = schema.multipleOf || 1;
+  if (minimum) {
+    if (exclusiveMinimum || (minimum % multipleOf !== 0)) {
+      // min: 9, exclusiveMinimum true, multipleOf: 2 => 10
+      // min: 10, exclusiveMinimum true, multipleOf: 2 => 12
+      return multipleOf * (Math.floor(minimum / multipleOf) + 1);
+    }
+    return minimum;
+  } else if (maximum) {
+    if (exclusiveMaximum || (maximum % multipleOf !== 0)) {
+      // max: 9, exclusiveMaximum: true, multipleOf: 2 => 8
+      // max: 10, exclusiveMaximum: true, multipleOf: 2 => 8
+      return multipleOf * (Math.ceil(maximum / multipleOf) - 1);
+    }
+    return maximum;
+  }
+  return 0;
+}
+
+function toString(schema: Schema): string {
+  let length = 10;
+  if (schema.minLength) {
+    length = schema.minLength;
+  } else if (schema.maxLength) {
+    length = schema.maxLength;
+  }
+  let str = '';
+  for (let i = 0; i < length; i += 1) {
+    str += String.fromCharCode('A'.charCodeAt(0) + (i % 26));
+  }
+  return str;
 }
 
 function toExample(schema: Schema, rootSchema: Schema): any {
@@ -95,17 +135,16 @@ function toExample(schema: Schema, rootSchema: Schema): any {
       case 'date-time':
         return '2017-01-01T00:00:00+09:00';
       default:
-        return 'some string';
+        return toString(schema);
     }
   }
 
   if (is(schema, 'integer') || is(schema, 'number')) {
-    if (schema.minimum) {
-      return schema.minimum;
-    } else if (schema.maximum) {
-      return schema.maximum;
-    }
-    return 0;
+    return toNumber(schema);
+  }
+
+  if (is(schema, 'boolean')) {
+    return true;
   }
 
   return null;
