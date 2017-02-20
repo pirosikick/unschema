@@ -11,7 +11,18 @@ Generate JSON from JSON Schema
 
 ```js
 const unschema = require('unschema');
-console.log(unschema({ type: 'string' })); // 'some string'
+console.log(unschema({ type: 'string' })); // 'ABCDEFGHIJ'
+console.log(unschema({ type: 'number' })); // 0
+console.log(unschema({ type: 'boolean' })); // true
+
+console.log(unschema({
+  type: 'object',
+  properties: {
+    a: { type: 'string' },
+    b: { type: 'number' }
+  }
+});
+// => { a: 'ABCDEFGHIJ', b: 0 }
 ```
 
 ## License
