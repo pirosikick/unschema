@@ -11,6 +11,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-register": "^6.23.0",
     "codecov": "^1.0.1",
+    "del-cli": "^0.2.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-flowtype": "^2.30.0",
@@ -37,13 +38,14 @@
     "url": "https://github.com/pirosikick/unschema.git"
   },
   "scripts": {
+    "clean": "del-cli lib",
     "build": "babel src -d lib",
     "test": "nyc ava",
     "codecov": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "lint": "eslint src test",
     "flow": "flow",
     "lint-staged": "lint-staged",
-    "prepublish": "run-s lint flow test build"
+    "prepublish": "run-s clean lint flow test build"
   },
   "ava": {
     "source": [
