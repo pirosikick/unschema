@@ -1,6 +1,7 @@
 [![npm version](https://badge.fury.io/js/unschema.svg)](http://badge.fury.io/js/unschema)
 [![david](https://david-dm.org/pirosikick/unschema.svg)](https://david-dm.org/pirosikick/unschema)
 [![Build Status](https://travis-ci.org/pirosikick/unschema.svg)](https://travis-ci.org/pirosikick/unschema)
+[![codecov](https://codecov.io/gh/pirosikick/unschema/branch/master/graph/badge.svg)](https://codecov.io/gh/pirosikick/unschema)
 
 unschema
 ========
