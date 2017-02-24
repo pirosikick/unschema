@@ -150,7 +150,10 @@ function toExample(schema: Schema, rootSchema: Schema): any {
   return null;
 }
 
-function unschema(schema: Schema): any {
+function unschema(schema: Schema, rootSchema: ?Schema): any {
+  if (rootSchema) {
+    return toExample(schema, rootSchema);
+  }
   return toExample(schema, schema);
 }
 
