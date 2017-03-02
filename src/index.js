@@ -98,6 +98,11 @@ function toExample(schema: Schema, rootSchema: Schema): any {
     return schema.example;
   }
 
+  if (typeof schema.$ref === 'string') {
+    // eslint-disable-next-line no-param-reassign
+    schema = resolvePointer(schema, rootSchema);
+  }
+
   if (is(schema, 'object')) {
     const properties = schema.properties || {};
     const example = {};
